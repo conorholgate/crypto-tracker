@@ -1,11 +1,17 @@
 <template>
     <main>
         <div class="text-7xl">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus et cumque praesentium sequi officia laborum voluptatibus quae expedita, necessitatibus itaque quia, exercitationem molestiae? Nobis praesentium, ullam fugiat in temporibus eos.
+            <button @click="getPrices">get prices</button>
         </div>
         
     </main>
 </template>
 
 <script setup>
+    import axios from 'axios';
+    const getPrices = () => {
+        axios.get('http://localhost:8080/prices').then(res => {
+            console.log(res.data);
+        })
+    }
 </script>
