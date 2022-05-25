@@ -10,7 +10,7 @@
 <script setup>
     import axios from 'axios';
     const getPrices = () => {
-        axios.get('http://localhost:8080/prices').then(res => {
+        axios.get('http://localhost:8080/coinmarketcap').then(res => {
             console.log(res.data);
         })
     }
