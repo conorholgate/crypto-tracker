@@ -4,8 +4,6 @@ const port = 8080
 const axios = require('axios')
 const response = require('express/lib/response')
 
-'e90f6218-8b96-4843-8b08-ab0246903f0d'
-
 app.get('/prices', (req,response) => {
     response.set('Access-Control-Allow-Origin', '*')
     axios.get('https://api.coindesk.com/v1/bpi/currentprice.json').then(res => {
@@ -15,7 +13,7 @@ app.get('/prices', (req,response) => {
 app.get('/coinmarketcap', (req,response) => {
     response.set('Access-Control-Allow-Origin', '*')
     axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
-        Headers: {
+        headers: {
             'X-CMC_PRO_API_KEY': 'e90f6218-8b96-4843-8b08-ab0246903f0d',
             'Accept': 'application/json',
             'Accept-Encoding': 'deflate, gzip'
