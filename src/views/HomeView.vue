@@ -3,11 +3,6 @@
         <div class="text-xl">
             <button @click="getPrices">get prices</button>
         </div>
-        <!-- <div v-if="allCoins.length">
-            <div v-for="(coin) in allCoins" :key="coin.id">
-                {{ coin.name }} / {{ coin.quote.USD.price }}
-            </div>
-        </div> -->
         <template v-if="allCoins">
             <div class="">
                 <div class="flex flex-col mt-8">
