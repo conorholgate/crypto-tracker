@@ -41,6 +41,11 @@ const onOpenCurrencyMenu = () => {
     showCurrencyMenu.value = !showCurrencyMenu.value
 }
 const onSelectCurrency = (currency) => {
+    axios.get(`http://localhost:8080/prices%${currency}`).then(res => {
+        // console.log(res.data);
+        selectedCurrency.value = res.data.data
+        console.log(allCoins.value[0].name);
+    })
     selectedCurrency.value = currency   
 }
 
