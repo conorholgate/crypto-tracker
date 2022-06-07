@@ -26,7 +26,8 @@
                 <input id="search" class="block w-full py-2 pl-10 pr-3 text-sm leading-5 text-black placeholder-gray-600 bg-gray-100 rounded-md focus:outline-none lg:text-md" 
                     placeholder="Search" 
                     type="search" 
-                    name="search" />
+                    name="search"
+                    v-model="prices.search" />
             </div>
         </div>
     </div>
@@ -34,22 +35,20 @@
 
 <script setup>
 import { SearchIcon, ChevronDownIcon } from '@heroicons/vue/solid'
-import { ref, onBeforeMount } from 'vue';
+import { ref } from 'vue';
+import { usePricesStore } from '@/stores/pricesStore'
+
+const prices = usePricesStore()
+
 var showCurrencyMenu = ref(false)
 var selectedCurrency = ref('GBP')
 const onOpenCurrencyMenu = () => {
     showCurrencyMenu.value = !showCurrencyMenu.value
 }
 const onSelectCurrency = (currency) => {
-    axios.get(`http://localhost:8080/prices%${currency}`).then(res => {
-        // console.log(res.data);
-        selectedCurrency.value = res.data.data
-        console.log(allCoins.value[0].name);
-    })
+    prices.setCurrency(currency)
     selectedCurrency.value = currency   
 }
-
-
 </script>
 
 <style scoped>
