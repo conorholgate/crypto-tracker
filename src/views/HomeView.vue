@@ -6,13 +6,13 @@
                     <div class="flex items-center justify-end px-8">
                         <p class="">Show</p>
                         <div class="p-2 ml-2 bg-white rounded-md cursor-pointer w-14 focus:outline-none" @mouseenter="showLimit = true" @mouseleave="showLimit = false">
-                            <div class="flex">{{ cryptoStore.selectedLimit }} <span> <ChevronDownIcon class="w-5 h-5" aria-hidden="true" /></span></div>
+                            <div class="flex">{{ cryptoStore.sort.selectedLimit }} <span> <ChevronDownIcon class="w-5 h-5" aria-hidden="true" /></span></div>
                             <transition enter-active-class="transition duration-200 ease-out" enter-from-class="-translate-y-1 opacity-0" enter-to-class="translate-y-0 opacity-100" leave-active-class="transition duration-150 ease-in" leave-from-class="translate-y-0 opacity-100" leave-to-class="-translate-y-1 opacity-0">
                                 <div v-if="showLimit" class="absolute mr-2 bg-white rounded-b-md w-14 lg:right-8 right-12">
                                     <div>
-                                        <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.selectedLimit === '25' ? 'bg-gray-200' : ''" @click="onSelectLimit('25')">25</p>
-                                        <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.selectedLimit === '50' ? 'bg-gray-200' : ''" @click="onSelectLimit('50')">50</p>
-                                        <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.selectedLimit === '100' ? 'bg-gray-200' : ''" @click="onSelectLimit('100')">100</p>
+                                        <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === '25' ? 'bg-gray-200' : ''" @click="onSelectLimit('25')">25</p>
+                                        <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === '50' ? 'bg-gray-200' : ''" @click="onSelectLimit('50')">50</p>
+                                        <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === '100' ? 'bg-gray-200' : ''" @click="onSelectLimit('100')">100</p>
                                     </div>
                                 </div>
                             </transition>
@@ -41,7 +41,7 @@
                                 </tr>
                             </thead>
                             <tbody v-if="filteredCoins.length" class="divide-y divide-gray-200">
-                                <template v-if="cryptoStore.currency === 'GBP'">
+                                <template v-if="cryptoStore.sort.currency === 'GBP'">
                                     <tr v-for="(coin) in filteredCoins" :key="coin.id">
                                         <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6 md:pl-0">{{ coin.cmc_rank }}</td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{{ coin.name }} ({{ coin.symbol }})</td>
@@ -53,7 +53,7 @@
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{{ Math.round(coin.total_supply).toLocaleString() }} <span v-if="coin.max_supply"> / {{ Math.round(coin.max_supply).toLocaleString() }}</span>{{ coin.symbol }}</td>
                                     </tr>
                                 </template>
-                                <template v-if="cryptoStore.currency === 'USD'">
+                                <template v-if="cryptoStore.sort.currency === 'USD'">
                                     <tr v-for="(coin) in cryptoStore.allCoins" :key="coin.id">
                                         <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6 md:pl-0">{{ coin.cmc_rank }}</td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{{ coin.name }} ({{ coin.symbol }})</td>
@@ -65,7 +65,7 @@
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{{ Math.round(coin.total_supply).toLocaleString() }} <span v-if="coin.max_supply"> / {{ Math.round(coin.max_supply).toLocaleString() }} </span>{{ coin.symbol }}</td>
                                     </tr>
                                 </template>
-                                <template v-if="cryptoStore.currency === 'EUR'">
+                                <template v-if="cryptoStore.sort.currency === 'EUR'">
                                     <tr v-for="(coin) in cryptoStore.allCoins" :key="coin.id">
                                         <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6 md:pl-0">{{ coin.cmc_rank }}</td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{{ coin.name }} ({{ coin.symbol }})</td>
@@ -131,7 +131,7 @@
     const currencyFormatter = (value) => {
         var formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
-            currency: cryptoStore.currency
+            currency: cryptoStore.sort.currency
         })
         return formatter.format(value)
     }
