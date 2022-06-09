@@ -6,17 +6,18 @@ export const useCryptoStore = defineStore('crypto',{
         return {
             allCoins: [],
             search: '',
-            currency: 'GBP',
-            selectedLimit: '50',
             sort: {
-                name: '',
-                price: ''
+                currency: 'GBP',
+                selectedLimit: '50',
+                activeSort: 'market_cap',
+                sortDir: 'desc'
             }
+            
         }
     },
     actions: {
         getPrices() {
-            axios.get('http://localhost:8080/latest', {params: {currency: this.currency, limit: this.selectedLimit}}).then(res => {
+            axios.get('http://localhost:8080/latest', {params: this.sort}).then(res => {
                 this.allCoins = res.data.data
             })
             .catch(err => {
@@ -58,11 +59,11 @@ export const useCryptoStore = defineStore('crypto',{
             if (this.currency === currency) {
                 return
             }
-            this.currency = currency
+            this.sort.currency = currency
             this.getPrices()
         },
         setLimit(limit){
-            this.selectedLimit = limit
+            this.sort.selectedLimit = limit
             this.getPrices()
         }
     }

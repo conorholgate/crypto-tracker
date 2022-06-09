@@ -11,10 +11,13 @@ app.get('/prices', (req,response) => {
     })
 })
 app.get('/latest', (req,response) => {
+    console.log(req.query);
+    let sort = req.query.activeSort
+    let dir = req.query.sortDir
     let currency = req.query.currency
-    let limit = req.query.limit
+    let limit = req.query.selectedLimit
     response.set('Access-Control-Allow-Origin', '*')
-    axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?convert=${currency}&limit=${limit}`,{
+    axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?convert=${currency}&limit=${limit}&sort=${sort}&sort_dir=${dir}`,{
         headers: {
             'X-CMC_PRO_API_KEY': 'e90f6218-8b96-4843-8b08-ab0246903f0d',
             'Accept': 'application/json',
