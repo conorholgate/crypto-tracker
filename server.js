@@ -42,5 +42,5 @@ wss.on('connection', function (ws) {
 });
 
 server.listen(3000, function () {
-  console.log('Listening on http://localhost:8080');
+  console.log('frontend served');
 });

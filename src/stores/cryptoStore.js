@@ -17,7 +17,7 @@ export const useCryptoStore = defineStore('crypto',{
     },
     actions: {
         getPrices() {
-            axios.get('http://localhost:8080/latest', {params: this.sort}).then(res => {
+            axios.get('https://crypto.conorholgate.app/api/latest', {params: this.sort}).then(res => {
                 this.allCoins = res.data.data
             })
             .catch(err => {
