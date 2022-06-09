@@ -4,16 +4,15 @@
             Crypto-Tracker App
         </div>
         <div class="flex items-center mr-10">
-            <div class="flex mr-5 cursor-pointer focus:outline-none" @click="onOpenCurrencyMenu">
-                <button v-if="showCurrencyMenu" tabindex="-1" class="fixed inset-0 w-full h-full bg-black opacity-0 cursor-default"></button>
-                <div>{{ selectedCurrency }}</div>
+            <div class="flex pt-5 pb-5 mr-5 cursor-pointer focus:outline-none" @mouseenter="showCurrencyMenu = true" @mouseleave="showCurrencyMenu = false">
+                <div>{{ cryptoStore.currency }}</div>
                 <ChevronDownIcon class="w-5 h-5" aria-hidden="true" />
                 <transition enter-active-class="transition duration-200 ease-out" enter-from-class="-translate-y-1 opacity-0" enter-to-class="translate-y-0 opacity-100" leave-active-class="transition duration-150 ease-in" leave-from-class="translate-y-0 opacity-100" leave-to-class="-translate-y-1 opacity-0">
                     <div v-if="showCurrencyMenu" class="absolute bg-white rounded-b-md top-16">
                         <div>
-                            <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="selectedCurrency === 'GBP' ? 'bg-gray-200' : ''" @click="onSelectCurrency('GBP')">GBP</p>
-                            <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="selectedCurrency === 'USD' ? 'bg-gray-200' : ''" @click="onSelectCurrency('USD')">USD</p>
-                            <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="selectedCurrency === 'EUR' ? 'bg-gray-200' : ''" @click="onSelectCurrency('EUR')">EUR</p>
+                            <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.currency === 'GBP' ? 'bg-gray-200' : ''" @click="onSelectCurrency('GBP')">GBP</p>
+                            <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.currency === 'USD' ? 'bg-gray-200' : ''" @click="onSelectCurrency('USD')">USD</p>
+                            <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.currency === 'EUR' ? 'bg-gray-200' : ''" @click="onSelectCurrency('EUR')">EUR</p>
                         </div>
                     </div>
                 </transition>
@@ -27,7 +26,7 @@
                     placeholder="Search" 
                     type="search" 
                     name="search"
-                    v-model="prices.search" />
+                    v-model="cryptoStore.search" />
             </div>
         </div>
     </div>
@@ -36,18 +35,17 @@
 <script setup>
 import { SearchIcon, ChevronDownIcon } from '@heroicons/vue/solid'
 import { ref } from 'vue';
-import { usePricesStore } from '@/stores/pricesStore'
+import { useCryptoStore } from '@/stores/cryptoStore'
 
-const prices = usePricesStore()
+const cryptoStore = useCryptoStore()
 
 var showCurrencyMenu = ref(false)
-var selectedCurrency = ref('GBP')
 const onOpenCurrencyMenu = () => {
     showCurrencyMenu.value = !showCurrencyMenu.value
 }
 const onSelectCurrency = (currency) => {
-    prices.setCurrency(currency)
-    selectedCurrency.value = currency   
+    cryptoStore.setCurrency(currency)
+    showCurrencyMenu.value = false  
 }
 </script>
 
