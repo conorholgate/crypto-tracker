@@ -4,6 +4,6 @@
 
 @layer base {
     body {
-        @apply bg-gray-100 m-0 p-0;
+        @apply p-0 m-0 bg-gray-100;
     }
 }
