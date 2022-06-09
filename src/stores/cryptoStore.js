@@ -17,7 +17,7 @@ export const useCryptoStore = defineStore('crypto',{
     },
     actions: {
         getPrices() {
-            axios.get('https://api/latest', {params: this.sort}).then(res => {
+            axios.get('http://localhost:8080/latest', {params: this.sort}).then(res => {
                 this.allCoins = res.data.data
             })
             .catch(err => {
@@ -32,7 +32,7 @@ export const useCryptoStore = defineStore('crypto',{
             } else if (this.sort.name === 'desc') {
                 this.sort.name = 'asc'
             }
-            axios.get('https://api/latest/sort', {params: {currency: this.currency, type: 'name', direction: this.sort.name}}).then(res => {
+            axios.get('http://localhost:8080/latest/sort', {params: {currency: this.currency, type: 'name', direction: this.sort.name}}).then(res => {
                 this.allCoins = res.data.data
             })
             .catch(err => {
@@ -48,7 +48,7 @@ export const useCryptoStore = defineStore('crypto',{
                 this.sort.price = 'asc'
             }
             console.log(this.sort.price);
-            axios.get('https://api/latest/sort', {params: {currency: this.currency, type: 'price', direction: this.sort.price }}).then(res => {
+            axios.get('http://localhost:8080/latest/sort', {params: {currency: this.currency, type: 'price', direction: this.sort.price }}).then(res => {
                 this.allCoins = res.data.data
             })
             .catch(err => {
