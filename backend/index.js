@@ -4,12 +4,6 @@ const port = 8080
 const axios = require('axios')
 const response = require('express/lib/response')
 
-app.get('/prices', (req,response) => {
-    response.set('Access-Control-Allow-Origin', '*')
-    axios.get('https://api.coindesk.com/v1/bpi/currentprice.json').then(res => {
-        return response.json(res.data)
-    })
-})
 app.get('/latest', (req,response) => {
     console.log(req.query);
     let sort = req.query.activeSort
@@ -48,5 +42,5 @@ app.get('/latest/sort', (req,response) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on ${port}`)
+  console.log(`Backend serving on ${port}`)
 })
