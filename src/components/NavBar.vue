@@ -4,7 +4,7 @@
             Crypto-Tracker App
         </div>
         <div class="flex items-center mr-10">
-            <div class="flex pt-5 pb-5 mr-5 cursor-pointer focus:outline-none" @mouseenter="showCurrencyMenu = true" @mouseleave="showCurrencyMenu = false">
+            <div class="flex pt-5 pb-5 mr-5 cursor-pointer focus:outline-none" @mouseenter="showCurrencyMenu = true" @mouseleave="showCurrencyMenu = false" @click="showCurrencyMenu = true">
                 <div>{{ cryptoStore.sort.currency }}</div>
                 <ChevronDownIcon class="w-5 h-5" aria-hidden="true" />
                 <transition enter-active-class="transition duration-200 ease-out" enter-from-class="-translate-y-1 opacity-0" enter-to-class="translate-y-0 opacity-100" leave-active-class="transition duration-150 ease-in" leave-from-class="translate-y-0 opacity-100" leave-to-class="-translate-y-1 opacity-0">
@@ -23,7 +23,7 @@
                     <SearchIcon class="w-5 h-5" aria-hidden="true" />
                 </div>
                 <input id="search" class="block w-full py-2 pl-10 pr-3 text-sm leading-5 text-black placeholder-gray-600 bg-gray-100 rounded-md focus:outline-none lg:text-md" 
-                    placeholder="Search" 
+                    placeholder="Filter" 
                     type="search" 
                     name="search"
                     v-model="cryptoStore.search" />

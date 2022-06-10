@@ -8,9 +8,10 @@ export const useCryptoStore = defineStore('crypto',{
             search: '',
             sort: {
                 currency: 'GBP',
-                selectedLimit: '50',
+                selectedLimit: 50,
                 activeSort: 'market_cap',
-                sortDir: 'desc'
+                sortDir: 'desc',
+                start: 1
             }
             
         }
@@ -24,36 +25,29 @@ export const useCryptoStore = defineStore('crypto',{
                 console.log(err)
             }) 
         },
-        sortByName() {
-            if (this.sort.name === '') {
-                this.sort.name = 'asc'
-            } else if (this.sort.name === 'asc') {
-                this.sort.name = 'desc'
-            } else if (this.sort.name === 'desc') {
-                this.sort.name = 'asc'
-            }
-            axios.get('http://localhost:8080/latest/sort', {params: {currency: this.currency, type: 'name', direction: this.sort.name}}).then(res => {
-                this.allCoins = res.data.data
-            })
-            .catch(err => {
-                console.log(err)
-            }) 
+        nextPage() {
+            this.sort.start = this.sort.start + this.sort.selectedLimit
+            this.getPrices()
         },
-        sortByPrice() {
-            if (this.sort.price === '') {
-                this.sort.price = 'asc'
-            } else if (this.sort.price === 'asc') {
-                this.sort.price = 'desc'
-            } else if (this.sort.price === 'desc') {
-                this.sort.price = 'asc'
+        sortBy(value) {
+            if(this.sort.activeSort === value) {
+                if (this.sort.sortDir === 'desc') {
+                    this.sort.sortDir = 'asc'
+                } else {
+                    this.sort.sortDir = 'desc'
+                }
             }
-            console.log(this.sort.price);
-            axios.get('http://localhost:8080/latest/sort', {params: {currency: this.currency, type: 'price', direction: this.sort.price }}).then(res => {
+            this.sort.activeSort = value
+            this.getPrices()
+        },
+        onSearch() {
+            axios.get(`${import.meta.env.VITE_API_ROUTE}/search`, {params: {search:this.search}}).then(res => {
                 this.allCoins = res.data.data
             })
             .catch(err => {
                 console.log(err)
             }) 
+            
         },
         setCurrency(currency) {
             if (this.currency === currency) {
