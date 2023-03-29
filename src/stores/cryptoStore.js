@@ -36,6 +36,14 @@ export const useCryptoStore = defineStore('crypto', {
         this.getPrices()
       }
     },
+    goToPage(index) {
+      if (index === 0) {
+        this.sort.start = 1
+      } else {
+        this.sort.start = index * this.sort.selectedLimit + 1
+      }
+      this.getPrices()
+    },
     sortBy(value) {
       if (this.sort.activeSort === value) {
         if (this.sort.sortDir === 'desc') {
