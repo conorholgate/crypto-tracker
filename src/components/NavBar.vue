@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center justify-between h-16 bg-white">
-    <div class="ml-10 font-bold">Crypto-Tracker App</div>
-    <div class="flex items-center mr-10">
+  <div class="flex items-center justify-between h-16 px-4 bg-white md:px-10">
+    <div class="font-bold">Crypto-Tracker App</div>
+    <div class="flex items-center">
       <div class="flex pt-5 pb-5 cursor-pointer focus:outline-none">
         <div class="flex" @click="showCurrencyMenu = !showCurrencyMenu">
           <div>{{ cryptoStore.sort.currency }}</div>
