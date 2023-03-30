@@ -1,35 +1,43 @@
-# crypto-tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+# Crypto Tracker
 
-## Recommended IDE Setup
+A list of the latest prices for most crypto currenices.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+This has been built using Vite, Vue 3 and an Express Js backend
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Run Locally
 
-## Project Setup
+Clone the project
 
-```sh
-npm install
+```bash
+  git clone https://github.com/conorholgate/crypto-tracker
 ```
 
-### Compile and Hot-Reload for Development
+Go to the project directory
 
-```sh
-npm run dev
+```bash
+  cd crypto-tracker
 ```
 
-### Compile and Minify for Production
+Install dependencies
 
-```sh
-npm run build
+```bash
+  npm install
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+Create a Coin market cap api account to generate your own api token https://coinmarketcap.com/api/
 
-```sh
-npm run lint
+Once you have your api key, in the root directory, there will be a env.example, rename this to env.local and paste your api key next to the VITE_API_KEY and hit save
+
+Start the server
+
+```bash
+  npm run start-dev
 ```
+
+
+## Demo
+
+https://crypto.conorholgate.app/
+
