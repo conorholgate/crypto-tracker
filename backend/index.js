@@ -1,10 +1,12 @@
+const dotenv = require('../dotenv')
+const { VITE_API_KEY } = process.env
 const express = require('express')
 const app = express()
 const port = 8080
 const axios = require('axios')
 
 const headers = {
-  'X-CMC_PRO_API_KEY': 'e90f6218-8b96-4843-8b08-ab0246903f0d',
+  'X-CMC_PRO_API_KEY': VITE_API_KEY,
   Accept: 'application/json',
   'Accept-Encoding': 'deflate, gzip',
 }
