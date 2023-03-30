@@ -13,7 +13,12 @@
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-200">
-      <template v-if="filteredCoins.length">
+      <template v-if="cryptoStore.loading">
+        <tr>
+          <td colspan="8" class="pt-6 text-center text-gray-500">Loading, please wait...</td>
+        </tr>
+      </template>
+      <template v-if="filteredCoins.length && !cryptoStore.loading">
         <tr v-for="coin in filteredCoins" :key="coin.id">
           <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 truncate whitespace-nowrap sm:pl-6 md:pl-0">
             {{ coin.cmc_rank }}
@@ -41,7 +46,7 @@
           </td>
         </tr>
       </template>
-      <template v-if="!filteredCoins.length">
+      <template v-if="!filteredCoins.length && !cryptoStore.loading">
         <tr>
           <td colspan="8" class="pt-6 text-center text-gray-500">No coins found</td>
         </tr>
@@ -55,7 +60,7 @@
 
 <script setup>
 import { useCryptoStore } from '@/stores/cryptoStore'
-import { computed } from '@vue/runtime-core'
+import { computed, ref } from '@vue/runtime-core'
 import Pagination from '../components/Pagniation.vue'
 
 const cryptoStore = useCryptoStore()

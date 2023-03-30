@@ -14,19 +14,22 @@ export const useCryptoStore = defineStore('crypto', {
         sortDir: 'desc',
         start: 1,
       },
+      loading: false,
     }
   },
   actions: {
-    getPrices() {
-      axios
-        .get(`${import.meta.env.VITE_API_ROUTE}/latest`, { params: this.sort })
-        .then(res => {
-          this.allCoins = res.data.data
-        })
-        .catch(err => {
-          console.log(err)
-          showToast(err.message, 'error')
-        })
+    async getPrices() {
+      this.loading = true
+      try {
+        let {
+          data: { data: response },
+        } = await axios.get(`${import.meta.env.VITE_API_ROUTE}/latest`, { params: this.sort })
+        this.allCoins = await response
+        this.loading = false
+      } catch (error) {
+        this.loading = false
+        showToast(error.message, 'error')
+      }
     },
     nextPage() {
       this.sort.start = this.sort.start + this.sort.selectedLimit
