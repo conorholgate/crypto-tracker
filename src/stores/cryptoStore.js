@@ -14,6 +14,8 @@ export const useCryptoStore = defineStore('crypto', {
         sortDir: 'desc',
         start: 1,
       },
+      availableCurrencies: ['GBP', 'USD', 'EUR'],
+      availableShowQuantities: [25, 50, 100],
       loading: false,
     }
   },

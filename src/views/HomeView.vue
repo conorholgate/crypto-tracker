@@ -19,10 +19,8 @@
                 leave-to-class="-translate-y-1 opacity-0"
               >
                 <div v-if="showLimit" class="absolute mr-2 bg-white rounded-b-md w-14 lg:right-8 right-12">
-                  <div>
-                    <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === '25' ? 'bg-gray-200' : ''" @click="onSelectLimit('25')">25</p>
-                    <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === '50' ? 'bg-gray-200' : ''" @click="onSelectLimit('50')">50</p>
-                    <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === '100' ? 'bg-gray-200' : ''" @click="onSelectLimit('100')">100</p>
+                  <div v-for="quantity in cryptoStore.availableShowQuantities" :key="quantity">
+                    <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === quantity ? 'bg-gray-200' : ''" @click="onSelectLimit(quantity)">{{ quantity }}</p>
                   </div>
                 </div>
               </transition>
@@ -45,9 +43,9 @@ import { SearchIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '
 import CryptoTable from '../components/CryptoTable.vue'
 
 const cryptoStore = useCryptoStore()
-onMounted(() => {
-  cryptoStore.getPrices()
-})
+// onMounted(() => {
+//   cryptoStore.getPrices()
+// })
 
 let showLimit = ref(false)
 const onSelectLimit = limit => {

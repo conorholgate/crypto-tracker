@@ -16,10 +16,8 @@
           leave-to-class="-translate-y-1 opacity-0"
         >
           <div v-if="showCurrencyMenu" class="absolute bg-white rounded-b-md top-16">
-            <div>
-              <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.currency === 'GBP' ? 'bg-gray-200' : ''" @click="onSelectCurrency('GBP')">GBP</p>
-              <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.currency === 'USD' ? 'bg-gray-200' : ''" @click="onSelectCurrency('USD')">USD</p>
-              <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.currency === 'EUR' ? 'bg-gray-200' : ''" @click="onSelectCurrency('EUR')">EUR</p>
+            <div v-for="currency in cryptoStore.availableCurrencies" :key="currency">
+              <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.currency === currency ? 'bg-gray-200' : ''" @click="onSelectCurrency(currency)">{{ currency }}</p>
             </div>
           </div>
         </transition>
