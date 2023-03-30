@@ -1,4 +1,4 @@
-const dotenv = require('../dotenv')
+const dotenv = require('./dotenv')
 const { VITE_API_KEY } = process.env
 const express = require('express')
 const app = express()
