@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { showToast } from '../utilities/toast'
 
 export const useCryptoStore = defineStore('crypto', {
   state: () => {
@@ -13,18 +14,24 @@ export const useCryptoStore = defineStore('crypto', {
         sortDir: 'desc',
         start: 1,
       },
+      availableCurrencies: ['GBP', 'USD', 'EUR'],
+      availableShowQuantities: [25, 50, 100],
+      loading: false,
     }
   },
   actions: {
-    getPrices() {
-      axios
-        .get(`${import.meta.env.VITE_API_ROUTE}/latest`, { params: this.sort })
-        .then(res => {
-          this.allCoins = res.data.data
-        })
-        .catch(err => {
-          console.log(err)
-        })
+    async getPrices() {
+      this.loading = true
+      try {
+        let {
+          data: { data: response },
+        } = await axios.get(`${import.meta.env.VITE_API_ROUTE}/latest`, { params: this.sort })
+        this.allCoins = await response
+        this.loading = false
+      } catch (error) {
+        this.loading = false
+        showToast(error.message, 'error')
+      }
     },
     nextPage() {
       this.sort.start = this.sort.start + this.sort.selectedLimit
