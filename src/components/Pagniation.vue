@@ -21,10 +21,10 @@
         </a>
       </nav>
     </div>
-    <div class="flex items-center justify-evenly md:hidden">
-      <button class="flex items-center px-6 py-4 bg-white rounded-md" @click="previousPage()"><ChevronLeftIcon class="w-5 h-5" aria-hidden="true" /> <span>Previous</span></button>
+    <div class="flex items-center justify-between md:hidden">
+      <button class="flex items-center px-4 py-2.5 bg-white rounded-md" @click="previousPage()"><ChevronLeftIcon class="w-5 h-5" aria-hidden="true" /> <span>Previous</span></button>
       <span>Page {{ activePage }}</span>
-      <button class="flex items-center px-6 py-4 bg-white rounded-md" @click="nextPage()"><span>Next</span><ChevronRightIcon class="w-5 h-5" aria-hidden="true" /></button>
+      <button class="flex items-center px-4 py-2.5 bg-white rounded-md" @click="nextPage()"><span>Next</span><ChevronRightIcon class="w-5 h-5" aria-hidden="true" /></button>
     </div>
   </div>
 </template>
