@@ -16,7 +16,7 @@
             leave-from-class="translate-y-0 opacity-100"
             leave-to-class="-translate-y-1 opacity-0"
           >
-            <div v-if="showLimit" class="absolute bg-white right-10 rounded-b-md w-14">
+            <div v-if="showLimit" class="absolute bg-white right-2 md:right-10 rounded-b-md w-14">
               <div v-for="quantity in cryptoStore.availableShowQuantities" :key="quantity">
                 <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === quantity ? 'bg-gray-200' : ''" @click="onSelectLimit(quantity)">{{ quantity }}</p>
               </div>
