@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { showToast } from '../utilities/toast'
 
 export const useCryptoStore = defineStore('crypto', {
   state: () => {
@@ -24,6 +25,7 @@ export const useCryptoStore = defineStore('crypto', {
         })
         .catch(err => {
           console.log(err)
+          showToast(err.message, 'error')
         })
     },
     nextPage() {

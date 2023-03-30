@@ -18,32 +18,11 @@
                 leave-from-class="translate-y-0 opacity-100"
                 leave-to-class="-translate-y-1 opacity-0"
               >
-                <div
-                  v-if="showLimit"
-                  class="absolute mr-2 bg-white rounded-b-md w-14 lg:right-8 right-12"
-                >
+                <div v-if="showLimit" class="absolute mr-2 bg-white rounded-b-md w-14 lg:right-8 right-12">
                   <div>
-                    <p
-                      class="px-4 py-1 cursor-pointer hover:bg-gray-200"
-                      :class="cryptoStore.sort.selectedLimit === '25' ? 'bg-gray-200' : ''"
-                      @click="onSelectLimit('25')"
-                    >
-                      25
-                    </p>
-                    <p
-                      class="px-4 py-1 cursor-pointer hover:bg-gray-200"
-                      :class="cryptoStore.sort.selectedLimit === '50' ? 'bg-gray-200' : ''"
-                      @click="onSelectLimit('50')"
-                    >
-                      50
-                    </p>
-                    <p
-                      class="px-4 py-1 cursor-pointer hover:bg-gray-200"
-                      :class="cryptoStore.sort.selectedLimit === '100' ? 'bg-gray-200' : ''"
-                      @click="onSelectLimit('100')"
-                    >
-                      100
-                    </p>
+                    <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === '25' ? 'bg-gray-200' : ''" @click="onSelectLimit('25')">25</p>
+                    <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === '50' ? 'bg-gray-200' : ''" @click="onSelectLimit('50')">50</p>
+                    <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.selectedLimit === '100' ? 'bg-gray-200' : ''" @click="onSelectLimit('100')">100</p>
                   </div>
                 </div>
               </transition>
@@ -62,12 +41,7 @@
 import { ref } from '@vue/reactivity'
 import { useCryptoStore } from '@/stores/cryptoStore'
 import { computed, onMounted } from '@vue/runtime-core'
-import {
-  SearchIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from '@heroicons/vue/solid'
+import { SearchIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid'
 import CryptoTable from '../components/CryptoTable.vue'
 
 const cryptoStore = useCryptoStore()

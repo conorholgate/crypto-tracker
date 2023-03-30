@@ -23,7 +23,7 @@ app.get('/latest', (req, response) => {
       return response.json(res.data)
     })
     .catch(err => {
-      return response.json(err)
+      throw new Error(err)
     })
 })
 app.get('/search', (req, response) => {
@@ -40,7 +40,7 @@ app.get('/search', (req, response) => {
       return response.json(res.data)
     })
     .catch(err => {
-      return response.json(err)
+      throw new Error(err)
     })
 })
 
