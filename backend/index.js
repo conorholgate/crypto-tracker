@@ -22,7 +22,22 @@ app.get('/latest', (req, response) => {
       return response.json(res.data)
     })
     .catch(err => {
-      throw new Error(err)
+      return response.json(err)
+    })
+})
+app.get('/metadata', (req, response) => {
+  const { id, slug } = req.query
+  let urlQuery = id ? `id=${id}` : `slug=${slug}`
+  response.set('Access-Control-Allow-Origin', '*')
+  axios
+    .get(`https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?${urlQuery}`, {
+      headers: headers,
+    })
+    .then(res => {
+      return response.json(res.data)
+    })
+    .catch(err => {
+      return response.json(err)
     })
 })
 app.get('/search', (req, response) => {

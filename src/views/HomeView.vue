@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main v-if="!cryptoStore.loading">
     <div class="flex flex-col">
       <div class="flex items-center justify-end">
         <p class="">Show</p>
@@ -34,14 +34,10 @@
 <script setup>
 import { ref } from '@vue/reactivity'
 import { useCryptoStore } from '@/stores/cryptoStore'
-import { computed, onMounted } from '@vue/runtime-core'
 import { SearchIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid'
 import CryptoTable from '../components/CryptoTable.vue'
 
 const cryptoStore = useCryptoStore()
-onMounted(() => {
-  cryptoStore.getPrices()
-})
 
 let showLimit = ref(false)
 const onSelectLimit = limit => {

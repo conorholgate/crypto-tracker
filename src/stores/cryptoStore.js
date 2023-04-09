@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { showToast } from '../utilities/toast'
+import router from '../router/index'
 
 export const useCryptoStore = defineStore('crypto', {
   state: () => {
@@ -17,6 +18,7 @@ export const useCryptoStore = defineStore('crypto', {
       availableCurrencies: ['GBP', 'USD', 'EUR'],
       availableShowQuantities: [25, 50, 100],
       loading: false,
+      selectedCoin: {},
     }
   },
   actions: {
@@ -30,7 +32,33 @@ export const useCryptoStore = defineStore('crypto', {
         this.loading = false
       } catch (error) {
         this.loading = false
-        showToast(error.message, 'error')
+        showToast('Sorry! Something went wrong', 'error')
+      }
+    },
+    async getCoinMetadata(coin) {
+      this.loading = true
+      let params = {}
+      if (typeof coin === 'string') {
+        params = {
+          slug: coin,
+        }
+      } else {
+        params = {
+          id: coin.id,
+        }
+      }
+
+      try {
+        let {
+          data: { data: response },
+        } = await axios.get(`${import.meta.env.VITE_API_ROUTE}/metadata`, { params: params })
+        this.selectedCoin = await response[Object.keys(response)]
+        router.push({ name: 'currencies', params: { name: params.slug ? params.slug : coin.name.toLowerCase() } })
+        this.loading = false
+      } catch (error) {
+        router.push({ name: 'home' })
+        this.loading = false
+        showToast('Sorry! Something went wrong', 'error')
       }
     },
     nextPage() {
@@ -85,7 +113,3 @@ export const useCryptoStore = defineStore('crypto', {
     },
   },
 })
-
-// string
-// "market_cap"
-// "name""symbol""date_added""market_cap""market_cap_strict""price""circulating_supply""total_supply""max_supply""num_market_pairs""volume_24h""percent_change_1h""percent_change_24h""percent_change_7d""market_cap_by_total_supply_strict""volume_7d""volume_30d"
