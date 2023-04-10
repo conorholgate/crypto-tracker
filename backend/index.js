@@ -21,6 +21,7 @@ const headers = {
   'Accept-Encoding': 'deflate, gzip',
 }
 
+// Gets the latest data for all coins
 app.get('/latest', async (req, response, next) => {
   const { activeSort, sortDir, currency, selectedLimit, start } = req.query
   try {
@@ -32,6 +33,8 @@ app.get('/latest', async (req, response, next) => {
     next(err)
   }
 })
+
+// Gets data about one or many coins
 app.get('/metadata', async (req, response, next) => {
   const { id, slug } = req.query
   let urlQuery = id ? `id=${id}` : `slug=${slug}`
@@ -60,7 +63,6 @@ app.get('/metadata', async (req, response, next) => {
 // })
 
 // Applies the error handler to all routes
-
 app.use(errorHandler)
 app.listen(port, () => {
   console.log(`Backend serving on ${port}`)
