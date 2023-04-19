@@ -16,7 +16,7 @@
             leave-from-class="translate-y-0 opacity-100"
             leave-to-class="-translate-y-1 opacity-0"
           >
-            <div v-if="showCurrencyMenu" class="absolute bg-white rounded-b-md top-16">
+            <div v-if="showCurrencyMenu" class="absolute z-20 bg-white rounded-b-md top-16">
               <div v-for="currency in cryptoStore.availableCurrencies" :key="currency">
                 <p class="px-4 py-1 cursor-pointer hover:bg-gray-200" :class="cryptoStore.sort.currency === currency ? 'bg-gray-200' : ''" @click="onSelectCurrency(currency)">{{ currency }}</p>
               </div>
