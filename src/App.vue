@@ -2,10 +2,6 @@
 import { RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue'
 import PageFooter from './components/PageFooter.vue'
-import { useCryptoStore } from '@/stores/cryptoStore'
-
-const cryptoStore = useCryptoStore()
-cryptoStore.getPrices()
 </script>
 
 <template>

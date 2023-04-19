@@ -11,7 +11,7 @@
       <div v-if="getRank" class="inline-block px-2 py-2 text-sm bg-gray-200 border rounded-lg">
         {{ `Rank #${getRank}` }}
       </div>
-      <div class="w-1/2 mt-10">
+      <div class="w-full mt-10 lg:w-1/2">
         {{ cryptoStore.selectedCoin?.description }}
       </div>
     </div>

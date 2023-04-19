@@ -1,6 +1,6 @@
 <template>
-  <main v-if="!cryptoStore.loading">
-    <div class="flex flex-col">
+  <main>
+    <div class="flex flex-col" :class="isLoading ? 'opacity-20' : 'opacity-100'">
       <div class="flex items-center justify-end">
         <p class="">Show</p>
         <div class="relative p-2 ml-2 bg-white rounded-md cursor-pointer w-14 focus:outline-none">
@@ -36,8 +36,12 @@ import { ref } from '@vue/reactivity'
 import { useCryptoStore } from '@/stores/cryptoStore'
 import { SearchIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid'
 import CryptoTable from '../components/CryptoTable.vue'
+import { computed, onMounted } from 'vue'
 
 const cryptoStore = useCryptoStore()
+let isLoading = computed(() => {
+  return cryptoStore.loading
+})
 
 let showLimit = ref(false)
 const onSelectLimit = limit => {

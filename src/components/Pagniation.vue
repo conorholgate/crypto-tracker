@@ -32,14 +32,15 @@
 import { ref } from '@vue/reactivity'
 import { useCryptoStore } from '@/stores/cryptoStore'
 import { SearchIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid'
+import { computed, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
 
 defineProps({
   coins: Array,
 })
 
 const cryptoStore = useCryptoStore()
-
-let activePage = ref(1)
+const { activePage } = storeToRefs(cryptoStore)
 let pages = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 const nextPage = () => {
   activePage.value++
@@ -48,7 +49,7 @@ const nextPage = () => {
       pages.value[index]++
     })
   }
-  cryptoStore.nextPage()
+  cryptoStore.nextPage(activePage)
 }
 const previousPage = () => {
   activePage.value > 1 ? activePage.value-- : ''
@@ -59,11 +60,11 @@ const previousPage = () => {
       })
     }
   }
-  cryptoStore.previousPage()
+  cryptoStore.previousPage(activePage)
 }
 const goToPage = index => {
   activePage.value = pages.value[index]
-  cryptoStore.goToPage(index)
+  cryptoStore.goToPage(index, activePage)
 }
 </script>
 

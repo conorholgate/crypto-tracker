@@ -34,7 +34,6 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import { SearchIcon, ChevronDownIcon } from '@heroicons/vue/solid'
 import { ref } from 'vue'
