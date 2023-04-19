@@ -62,25 +62,22 @@ export const useCryptoStore = defineStore('crypto', {
         showToast('Sorry! Something went wrong', 'error')
       }
     },
-    nextPage(page) {
+    nextPage() {
       this.sort.start = this.sort.start + this.sort.selectedLimit
-      this.activePage = page
       this.getPrices()
     },
-    previousPage(page) {
+    previousPage() {
       if (this.sort.start > this.sort.selectedLimit) {
         this.sort.start = this.sort.start - this.sort.selectedLimit
-        this.activePage = page
         this.getPrices()
       }
     },
-    goToPage(index, page) {
+    goToPage(index) {
       if (index === 0) {
         this.sort.start = 1
       } else {
         this.sort.start = index * this.sort.selectedLimit + 1
       }
-      this.activePage = page
       this.getPrices()
     },
     sortBy(value) {
