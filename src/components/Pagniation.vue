@@ -31,7 +31,7 @@
 <script setup>
 import { ref } from '@vue/reactivity'
 import { useCryptoStore } from '@/stores/cryptoStore'
-import { SearchIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid'
 
 defineProps({
   coins: Array,
