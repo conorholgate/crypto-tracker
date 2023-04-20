@@ -24,19 +24,19 @@
             <td class="sticky left-0 hidden py-4 pl-4 pr-3 text-sm font-medium text-gray-900 truncate md:flex whitespace-nowrap sm:pl-6 md:pl-0">{{ coin.cmc_rank }}</td>
             <td class="sticky left-0 px-3 py-4 text-sm text-gray-500 truncate bg-gray-100 whitespace-nowrap max-w-[125px] md:max-w-none cursor-pointer hover:underline" @click="goToCurrencyPage(coin)">{{ coin.name }} ({{ coin.symbol }})</td>
             <td class="px-3 py-4 text-sm text-gray-500 truncate whitespace-nowrap">
-              {{ currencyFormatter(coin.quote[cryptoStore.sort.currency].price) }}
+              {{ currencyFormatter(coin.quote[cryptoStore.sort.currency]?.price) }}
             </td>
-            <td class="px-3 py-4 text-sm text-gray-500 truncate whitespace-nowrap" :class="Math.sign(coin.quote[cryptoStore.sort.currency].percent_change_24h) === 1 ? 'text-green-600' : 'text-red-600'">
-              {{ coin.quote[cryptoStore.sort.currency].percent_change_24h.toFixed(2) }}
+            <td class="px-3 py-4 text-sm text-gray-500 truncate whitespace-nowrap" :class="Math.sign(coin.quote[cryptoStore.sort.currency]?.percent_change_24h) === 1 ? 'text-green-600' : 'text-red-600'">
+              {{ coin.quote[cryptoStore.sort.currency]?.percent_change_24h.toFixed(2) }}
             </td>
-            <td class="px-3 py-4 text-sm text-gray-500 truncate whitespace-nowrap" :class="Math.sign(coin.quote[cryptoStore.sort.currency].percent_change_7d) === 1 ? 'text-green-600' : 'text-red-600'">
-              {{ coin.quote[cryptoStore.sort.currency].percent_change_7d.toFixed(2) }}
-            </td>
-            <td class="px-3 py-4 text-sm text-gray-500 truncate whitespace-nowrap">
-              {{ currencyFormatter(coin.quote[cryptoStore.sort.currency].market_cap) }}
+            <td class="px-3 py-4 text-sm text-gray-500 truncate whitespace-nowrap" :class="Math.sign(coin.quote[cryptoStore.sort.currency]?.percent_change_7d) === 1 ? 'text-green-600' : 'text-red-600'">
+              {{ coin.quote[cryptoStore.sort.currency]?.percent_change_7d.toFixed(2) }}
             </td>
             <td class="px-3 py-4 text-sm text-gray-500 truncate whitespace-nowrap">
-              {{ currencyFormatter(coin.quote[cryptoStore.sort.currency].volume_24h) }}
+              {{ currencyFormatter(coin.quote[cryptoStore.sort.currency]?.market_cap) }}
+            </td>
+            <td class="px-3 py-4 text-sm text-gray-500 truncate whitespace-nowrap">
+              {{ currencyFormatter(coin.quote[cryptoStore.sort.currency]?.volume_24h) }}
             </td>
             <td class="px-3 py-4 text-sm text-gray-500 truncate whitespace-nowrap">
               {{ Math.round(coin.total_supply).toLocaleString() }}
